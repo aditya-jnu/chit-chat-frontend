@@ -4,7 +4,6 @@ import axios from 'axios';
 export default function GetData() {
     const Base_URL="https://fileupserver.onrender.com";
     const [data, setData] = useState([]);
-    const[error,setError]=useState(null);
     
     useEffect(() => {
         const getInfo = async () => {
@@ -13,7 +12,7 @@ export default function GetData() {
                 setData(response.data.data);
                 console.log(response.data.data); // Log the fetched data
             } catch (err) {
-                setError(err);
+                console.log(err);
             }
         };
 
