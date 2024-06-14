@@ -10,32 +10,32 @@ export default function GetData() {
             try {
                 const response = await axios.get(`${Base_URL}/api/v1/upload/posts`);
                 setData(response.data.data);
-                console.log(response.data.data); // Log the fetched data
+                console.log("Fetched Data is here");
+                console.log(response.data.data);
             } catch (err) {
+                console.log('Error in fetching the data!!')
                 console.log(err);
             }
         };
-
-        getInfo(); // Call getInfo when the component mounts
-
+        getInfo();
     }, []);
 
     
     return (
-        <div className='flex flex-wrap justify-center gap-4 p-1'>
+        <div className='flex flex-col items-center py-2 gap-2 w-full'>
           {
              data.length!==0 ? 
                  //if true render this  
                  (data.map((user, index) =>(
-                     <div key={index} className='border w-1/4 h-1/4'>
-                         <img src={user.fileUrl} alt="" className='h-40 w-full '/>
+                     <div key={index} className='border-4 border-amber-600 rounded-xl'>
+                         <img src={user.fileUrl} className='h-64'/>
                          <p className='text-center font-semibold'>{user.desc}</p>
                       </div>
                       ))
                  ):
                  //  if false render this
                     (
-                      <div>Loading...</div>
+                      <div className='italic font-bold text-3xl'>Loading...</div>
                     )
           }
         </div>
