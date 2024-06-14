@@ -28,7 +28,7 @@ export default function GetData() {
                  //if true render this  
                  (data.map((user, index) =>(
                      <div key={index} className='border-4 border-amber-600 rounded-xl'>
-                         <img src={user.fileUrl} alt="Error in loading image" className='h-64'/>
+                         <img src={user.fileUrl}  className='h-64'/>
                          <p className='text-center font-semibold'>{user.desc}</p>
                       </div>
                       ))
