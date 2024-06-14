@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export default function InfoUp() {
     const Base_URL="https://fileupserver.onrender.com";
     const navigate=useNavigate();
+    const[submit,setSubmit]=useState(false);
     const[info,setInfo]=useState({desc:'',email:'', fileToUp:''});
     function changeHandle(event) {
         const { name, value, files } = event.target;
@@ -15,7 +16,7 @@ export default function InfoUp() {
     }
     async function submitHandle(event){
         event.preventDefault();
-
+        setSubmit(true);
          // Create a FormData object
          const formData = new FormData();
          formData.append('desc', info.desc);
@@ -25,6 +26,7 @@ export default function InfoUp() {
             const response=await axios.post(`${Base_URL}/api/v1/upload/file`,formData)
             console.log("File Uploaded!!")
             console.log(response.data);
+            setSubmit(false);
             navigate("/");
         }
         catch(err){
@@ -34,7 +36,7 @@ export default function InfoUp() {
     }
     return (
         <div className='flex justify-center items-center h-screen'>
-            <form encType='multipart/form-data' className='flex flex-col gap-6' onSubmit={submitHandle}>
+            {submit?(<div>Button Clicked!!</div>):(<form encType='multipart/form-data' className='flex flex-col gap-6' onSubmit={submitHandle}>
                 <div className='flex flex-col'>
                     <label htmlFor="desc">Description</label>
                     <input type="text" id='desc' value={info.desc} name='desc' onChange={changeHandle} className='border p-1'/>
@@ -48,7 +50,8 @@ export default function InfoUp() {
                 </div>
                 <button className='bg-secondary-blue p-2 text-white'>Submit</button>
                 
-            </form>
+            </form>)}
+            
         </div>
     )
 }
