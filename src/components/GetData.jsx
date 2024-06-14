@@ -2,13 +2,14 @@ import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 
 export default function GetData() {
+    const Base_URL="https://fileupserver.onrender.com";
     const [data, setData] = useState([]);
     const[error,setError]=useState(null);
     
     useEffect(() => {
         const getInfo = async () => {
             try {
-                const response = await axios.get('/api/v1/upload/posts');
+                const response = await axios.get(`${Base_URL}/api/v1/upload/posts`);
                 setData(response.data.data);
                 console.log(response.data.data); // Log the fetched data
             } catch (err) {

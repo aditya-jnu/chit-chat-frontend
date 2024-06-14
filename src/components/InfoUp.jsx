@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function InfoUp() {
+    const Base_URL="https://fileupserver.onrender.com";
     const navigate=useNavigate();
     const[info,setInfo]=useState({desc:'',email:'', fileToUp:''});
     function changeHandle(event) {
@@ -21,7 +22,7 @@ export default function InfoUp() {
          formData.append('email', info.email);
          formData.append('fileToUp', info.fileToUp);
         try{
-            const response=await axios.post('/api/v1/upload/file',formData)
+            const response=await axios.post(`${Base_URL}/api/v1/upload/file`,formData)
             console.log("File Uploaded!!")
             console.log(response.data);
             navigate("/");
