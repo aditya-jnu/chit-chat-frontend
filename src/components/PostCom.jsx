@@ -6,8 +6,8 @@ import { toast } from 'react-toastify';
 export default function PostCom(props) {
     let{loggedUser,setRefreshPage,refreshPage}=useContext(AppContext);
     console.log("pc",refreshPage)
-    // const Base_URL="https://fileupserver.onrender.com";
-    const Base_URL="http://localhost:4000"
+    const Base_URL="https://fileupserver.onrender.com";
+    // const Base_URL="http://localhost:4000"
     const[comment,setComment]=useState({comment:'',postId:props.postId,userId:loggedUser._id})
 
     function changeHandle(event){

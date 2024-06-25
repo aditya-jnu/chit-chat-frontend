@@ -9,8 +9,8 @@ import { AppContext } from '../context/AppContext';
 export default function GetData() {
     const{refreshPage}=useContext(AppContext)
     console.log('GD',refreshPage)
-    //const Base_URL="https://fileupserver.onrender.com";
-    const Base_URL="http://localhost:4000"
+    const Base_URL="https://fileupserver.onrender.com";
+    // const Base_URL="http://localhost:4000"
     const [page, setPage] = useState([]);
     const[hide,setHide]=useState(true);
     const[error,setError]=useState(null)
