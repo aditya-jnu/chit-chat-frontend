@@ -73,7 +73,7 @@ export default function NewPost() {
                         value={newPost.caption}
                         name='caption'
                         onChange={changeHandle}
-                        className='px-1 py-2'
+                        className='px-1 py-2 w-1/2'
                         placeholder="What's going on in your mind?"
                         required
                     />
