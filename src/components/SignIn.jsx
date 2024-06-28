@@ -6,6 +6,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from 'react-toastify';
 
 export default function SignIn() {
+    console.log("Entered")
     const navigate = useNavigate();
     const { setIsLoggedIn, setLoggedUser } = useContext(AppContext);
     const Base_URL = "https://fileupserver.onrender.com";
@@ -24,6 +25,8 @@ export default function SignIn() {
     }
 
     async function submitHandle(event) {
+        console.log("submit Entered")
+
         setSubmit(true)
         event.preventDefault();
         try {
