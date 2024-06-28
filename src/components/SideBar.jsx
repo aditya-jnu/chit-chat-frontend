@@ -8,8 +8,8 @@ export default function SideBar() {
     let{loggedUser}=useContext(AppContext)
     return (
             <div className='flex flex-col items-center justify-center cursor-pointer' onClick={()=>{navigate("/user/detail")}}>
-              <FaUser size={40}/>
-              <p className='font-md text-lg'>{loggedUser.userName}</p>
+              <FaUser size={36}/>
+              <p className='font-bold'>{loggedUser.userName}</p>
             </div>
     )
 }
