@@ -33,7 +33,6 @@ export default function SignIn() {
             setLoggedUser(response.data.user);
             setErrorMessage(null);
             navigate('/');
-            toast.success('user loggedIn successfully!!')
         } catch (err) {
             if (err.response && err.response.status === 400 && err.response.data.message === 'user does not exist, please signUp.') {
                 setErrorMessage('user does not exist, please signUp.');
