@@ -34,7 +34,7 @@ export default function GetData() {
     return (
         <div className='flex flex-col m-2 min-h-screen max-w-screen'>
 
-            <div className='flex justify-between border-b border-dotted py-1 px-2'>
+            <div className='flex relative border-b border-dotted py-1 px-2 overflow-x-hidden'>
                 <NewPost/>
                 <SideBar/>
             </div>
