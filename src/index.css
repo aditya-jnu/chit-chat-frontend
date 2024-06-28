@@ -14,3 +14,6 @@
     transform: translateY(-50%);
     cursor: pointer;
   }
+  .break-words {
+    overflow-wrap: break-word;
+}

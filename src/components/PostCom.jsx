@@ -27,6 +27,7 @@ export default function PostCom(props) {
                 ...prevState,
                 comment: ''
             }));
+            props.getInf();
             setRefreshPage(!refreshPage)
             console.log("PC",refreshPage)
         }

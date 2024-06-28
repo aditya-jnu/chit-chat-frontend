@@ -13,6 +13,7 @@ export default function SignIn() {
     const [info, setInfo] = useState({ userName: '', password: '' });
     const [isPass, setIsPass] = useState(true);
     const [errorMessage, setErrorMessage] = useState(null);
+    const[submit,setSubmit]=useState(false)
 
     function changeHandle(event) {
         const { name, value } = event.target;
@@ -23,6 +24,7 @@ export default function SignIn() {
     }
 
     async function submitHandle(event) {
+        setSubmit(true)
         event.preventDefault();
         try {
             const response = await axios.post(`${Base_URL}/api/v1/signin`, info);
@@ -43,9 +45,10 @@ export default function SignIn() {
                 setErrorMessage('an error occurred, please try again.');
             }
         }
+        setSubmit(false)
     }
 
-    return (
+    return (submit?<div className='text-2xl font-bold flex justify-center'>wait.....</div>:(
         <div className='flex flex-col gap-2 items-center justify-center min-h-screen min-w-screen'>
             <div className='flex flex-col items-center'>
                 <p className='font-bold text-3xl'>campus chitChat</p>
@@ -70,5 +73,5 @@ export default function SignIn() {
                 <p onClick={() => navigate("/signup")} className='cursor-pointer text-secondary-blue'>signUp</p>
             </div>
         </div>
-    )
+        ))
 }

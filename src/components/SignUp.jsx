@@ -12,6 +12,7 @@ export default function SignUp() {
     const[info,setInfo]=useState({userName:'',password:''});
     const[isPass,setIsPass]=useState(true);
     const[errorMessage, setErrorMessage] = useState(null);
+    const[submit,setSubmit]=useState(false)
 
     function changeHandle(event) {
         const { name, value} = event.target;
@@ -22,6 +23,7 @@ export default function SignUp() {
     }
 
     async function submitHandle(event){
+        setSubmit(true)
         event.preventDefault();
         try{
             const response=await axios.post(`${Base_URL}/api/v1/signup`,info)
@@ -41,9 +43,11 @@ export default function SignUp() {
                 toast.error('internal server error')
             }
         }
+        setSubmit(false)
     }
 
     return (
+        submit?<div className='flex justify-center font-bold text-2xl'>wait.....</div>:(
             <div className='flex flex-col items-center justify-center gap-2 min-h-screen min-w-screen'>
                 <div className='flex flex-col items-center'>
                      <p className='font-bold text-3xl'>campus chitChat</p>
@@ -67,6 +71,5 @@ export default function SignUp() {
                      <p>already have an account? </p>
                      <p onClick={()=>navigate("/")} className='cursor-pointer text-secondary-blue'>logIn</p>
                 </div>
-            </div> 
-    )
+            </div>))
 }

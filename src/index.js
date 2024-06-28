@@ -12,8 +12,7 @@ root.render(
   <AppContextProvider>
   <BrowserRouter>
      <App />
-     <ToastContainer position="top-center"
-  reverseOrder={false}/>
+     <ToastContainer position="top-center" reverseOrder={false}/>
   </BrowserRouter> 
   </AppContextProvider> 
 );
