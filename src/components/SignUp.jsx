@@ -48,7 +48,7 @@ export default function SignUp() {
 
     return (
         submit?<div className='flex justify-center font-bold text-2xl'>wait.....</div>:(
-            <div className='flex flex-col items-center justify-center gap-2 min-h-screen min-w-screen'>
+            <div className='flex flex-col items-center justify-center gap-2 h-screen w-screen'>
                 <div className='flex flex-col items-center'>
                      <p className='font-bold text-3xl'>campus chitChat</p>
                      <p className='italic text-xs'>signUp to get the latest campus gossip and stay in the loop!!</p>

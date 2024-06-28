@@ -51,7 +51,7 @@ export default function SignIn() {
     }
 
     return (submit?<div className='text-2xl font-bold flex justify-center'>wait.....</div>:(
-        <div className='flex flex-col gap-2 items-center justify-center min-h-screen min-w-screen'>
+        <div className='flex flex-col gap-2 items-center justify-center h-screen w-screen'>
             <div className='flex flex-col items-center'>
                 <p className='font-bold text-3xl'>campus chitChat</p>
                 <p className='italic text-xs'>logIn to get the latest campus gossip and stay in the loop!!</p>
