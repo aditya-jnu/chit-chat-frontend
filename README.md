@@ -1,2 +1,1 @@
-# https://campuschitchat.netlify.app/
-### backend: https://github.com/aditya-jnu/fileUpServer
+# https://github.com/aditya-jnu/fileUpServer
