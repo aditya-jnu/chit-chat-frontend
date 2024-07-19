@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { toast } from 'react-toastify';
+import PulseLoader from "react-spinners/PulseLoader";
 
 export default function SignIn() {
     console.log("Entered")
@@ -50,7 +51,8 @@ export default function SignIn() {
         setSubmit(false)
     }
 
-    return (submit?<div className='text-2xl font-bold flex justify-center'>wait.....</div>:(
+    return (submit?<div className='font-bold flex justify-center mt-8'><PulseLoader size={50} aria-label="Loading    Spinner" data-testid="loader"/>
+        </div>:(
         <div className='flex flex-col gap-2 items-center justify-center h-screen w-screen'>
             <div className='flex flex-col items-center'>
                 <p className='font-bold text-3xl'>campus chitChat</p>
