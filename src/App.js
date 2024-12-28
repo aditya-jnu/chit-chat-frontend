@@ -10,7 +10,7 @@ import { jwtDecode } from 'jwt-decode';
 
 export default function App() {
   const navigate=useNavigate();
-  let{isLoggedIn,setIsLoggedIn,setLoggedUser,loggedUser}=useContext(AppContext);
+  let{isLoggedIn,setIsLoggedIn,setLoggedUser}=useContext(AppContext);
   console.log("Local Storage ",localStorage.getItem('authToken'))
   const token = localStorage.getItem('authToken');
   const Base_URL = "https://fileupserver.onrender.com";
@@ -38,7 +38,7 @@ export default function App() {
     };
 
     fetchUserDetails();
-  }, [token, setLoggedUser]);
+  }, [token]);
   
 
   return (
