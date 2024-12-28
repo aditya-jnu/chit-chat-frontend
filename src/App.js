@@ -38,7 +38,7 @@ export default function App() {
     };
 
     fetchUserDetails();
-  }, [token]);
+  }, []);
   
 
   return (
