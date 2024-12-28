@@ -38,7 +38,7 @@ export default function App() {
     };
 
     fetchUserDetails();
-  }, []);
+  }, [setIsLoggedIn, setLoggedUser, token]);
   
 
   return (
