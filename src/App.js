@@ -7,7 +7,6 @@ import GetData from './components/GetData.jsx';
 import UserDetail from './components/UserDetail.jsx';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
-import FetchUser from './components/FetchUser.jsx';
 
 export default function App() {
   const navigate=useNavigate();
