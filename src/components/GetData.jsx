@@ -7,7 +7,7 @@ import { AppContext } from '../context/AppContext';
 
 export default function GetData() {
     
-    const{refreshPage}=useContext(AppContext)
+    const{refreshPage, isLoggedIn}=useContext(AppContext)
     console.log('GD',refreshPage)
     const Base_URL="https://fileupserver.onrender.com";
     // const Base_URL="http://localhost:4000";
@@ -16,6 +16,7 @@ export default function GetData() {
 
     const getInfo = async () => {
         try {
+            console.log("Fetching....")
             const response = await axios.get(`${Base_URL}/api/v1/posts`);
             console.log('BEFORE SORTING',response.data.posts)
             const sortedPosts = response.data.posts.slice().reverse();   

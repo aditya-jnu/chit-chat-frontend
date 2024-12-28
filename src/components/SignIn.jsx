@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 import PulseLoader from "react-spinners/PulseLoader";
 
 export default function SignIn() {
-    console.log("Entered")
     const navigate = useNavigate();
     const { setIsLoggedIn, setLoggedUser } = useContext(AppContext);
     const Base_URL = "https://fileupserver.onrender.com";
@@ -26,8 +25,6 @@ export default function SignIn() {
     }
 
     async function submitHandle(event) {
-        console.log("submit Entered")
-
         setSubmit(true)
         event.preventDefault();
         try {
@@ -36,13 +33,15 @@ export default function SignIn() {
             console.log("Logged user is",response.data)
             setLoggedUser(response.data.user);
             setErrorMessage(null);
+            // Store the JWT token in localStorage
+            localStorage.setItem('authToken', response.data.token);
             navigate('/');
         } catch (err) {
-            if (err.response && err.response.status === 400 && err.response.data.message === 'user does not exist, please signUp.') {
-                setErrorMessage('user does not exist, please signUp.');
-                toast.error('user does not exist, please signUp.')
-            } else if (err.response && err.response.status === 403 && err.response.data.message === 'incorrect passWord, please try again.') {
-                setErrorMessage('incorrect passWord, please try again.');
+            if (err.response && err.response.status === 402) {
+                setErrorMessage(err.response.data.message);
+                toast.error("user doesn't exist")
+            } else if (err.response && err.response.status === 403) {
+                setErrorMessage(err.response.data.message);
                 toast.error('incorrect passWord')
             } else {
                 setErrorMessage('an error occurred, please try again.');
@@ -51,9 +50,11 @@ export default function SignIn() {
         setSubmit(false)
     }
 
-    return (submit?<div className='font-bold flex justify-center mt-8'><PulseLoader size={50} aria-label="Loading    Spinner" data-testid="loader"/>
-        </div>:(
-        <div className='flex flex-col gap-2 items-center justify-center h-screen w-screen'>
+    return(
+        submit?
+        (<div className='font-bold flex justify-center mt-8'><PulseLoader size={50} aria-label="Loading    Spinner" data-testid="loader"/>
+        </div>):
+        (<div className='flex flex-col gap-2 items-center justify-center h-screen w-screen'>
             <div className='flex flex-col items-center'>
                 <p className='font-bold text-3xl'>campus chitChat</p>
                 <p className='italic text-xs'>logIn to get the latest campus gossip and stay in the loop!!</p>
@@ -74,8 +75,8 @@ export default function SignIn() {
             <div>or</div>
             <div className='flex gap-2 justify-center'>
                 <p>don't have an account? </p>
-                <p onClick={() => navigate("/signup")} className='cursor-pointer text-secondary-blue'>signUp</p>
+                <p onClick={() => navigate("/signup")} className='cursor-pointer text-stone font-bold'>signUp</p>
             </div>
-        </div>
-        ))
+        </div>)
+    )
 }

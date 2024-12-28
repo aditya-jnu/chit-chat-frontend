@@ -1,8 +1,10 @@
-import React,{useState} from 'react'
+import React,{useState, useContext} from 'react'
 import { LiaCommentSolid } from "react-icons/lia";
 import PostCom from './PostCom';
+import { AppContext } from '../context/AppContext';
 
 export default function PostCard({post,getInf}) {
+    const{isLoggedIn}=useContext(AppContext)
     console.log("Enter post card")
     const[hide,setHide]=useState(true);
     console.log("Before sorting",post.commentsArray)
@@ -69,7 +71,7 @@ export default function PostCard({post,getInf}) {
 
                             {/* ****ADD COMMENT**** */}
                             <div className='px-1'>
-                                 <PostCom postId={post._id} getInf={getInf}/>
+                                 {isLoggedIn?<PostCom postId={post._id} getInf={getInf}/>:null}
                             </div>
 
                         </div>

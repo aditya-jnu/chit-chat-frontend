@@ -4,7 +4,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 export default function NewPost() {
-    const { loggedUser,setRefreshPage,refreshPage } = useContext(AppContext);
+    const { loggedUser,setRefreshPage,refreshPage, isLoggedIn } = useContext(AppContext);
     const Base_URL = "https://fileupserver.onrender.com";
     // const Base_URL = "http://localhost:4000";
     const [newPost, setNewPost] = useState({ userId: loggedUser._id, caption: '' });

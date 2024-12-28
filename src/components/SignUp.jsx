@@ -33,12 +33,15 @@ export default function SignUp() {
             navigate("/")
         }
         catch(err){
-            if (err.response && err.response.status === 400 && err.response.data.message === 'this userName already exist') {
-                setErrorMessage('this user already exists, try with a different userName.');
-                toast.error('this userName already exist')
-            } else if (err.response && err.response.status === 500 && err.response.data.message === 'error in processing your request') {
-                setErrorMessage('error in processing your request, please try again later.');
-                toast.error('error in processing your request')
+            if(err.response && err.response.status === 400) {
+                setErrorMessage(err.response.data.message);
+                toast.error(err.response.data.message)
+            }else if(err.response && err.response.status === 401){
+                setErrorMessage(err.response.data.message)
+                toast.error(err.response.data.message)
+            }else if (err.response && err.response.status === 500) {
+                setErrorMessage(err.response.data.message);
+                toast.error(err.response.data.message)
             } else {
                 setErrorMessage('internal server error, please try again later.');
                 toast.error('internal server error')
@@ -47,32 +50,34 @@ export default function SignUp() {
         setSubmit(false)
     }
 
-    return (
-        submit?<div className='flex justify-center font-bold mt-8'><PulseLoader size={50} aria-label="Loading Spinner"
-                data-testid="loader"/>
-            </div>:(
-            <div className='flex flex-col items-center justify-center gap-2 h-screen w-screen'>
-                <div className='flex flex-col items-center'>
-                     <p className='font-bold text-3xl'>campus chitChat</p>
-                     <p className='italic text-xs'>signUp to get the latest campus gossip and stay in the loop!!</p>
-                </div>
-                <div>
+    return(
+        submit?
+        (<div className='flex justify-center font-bold mt-8'>
+            <PulseLoader size={50} aria-label="Loading Spinner" data-testid="loader"/>
+        </div>):
+        (<div className='flex flex-col items-center justify-center gap-2 h-screen w-screen'>
+            <div className='flex flex-col items-center'>
+                <p className='font-bold text-3xl'>campus chitChat</p>
+                <p className='italic text-xs'>signUp to get the latest campus gossip and stay in the loop!!</p>
+            </div>
+            <div>
                 <form  className='flex flex-col gap-4 items-center' onSubmit={submitHandle}>
-                 <input type="text" id='userName' value={info.userName} name='userName' onChange={changeHandle} className='border p-1 w-64' required placeholder='userName'/>
-                 <div className='input-container'>
-                     <input type={isPass?'password':'text'} id='password' value={info.password} name='password' onChange={changeHandle} className='border p-1 w-64' required placeholder='passWord'/>
-                     <div className='eye-icon' onClick={() => { setIsPass(!isPass) }}>
-                        {isPass ? <FaRegEye /> : <FaRegEyeSlash />}
-                     </div>
-                 </div>
-                 {errorMessage && <p className='text-center' style={{color:'red'}}>{errorMessage}</p>}
-                 <button className='bg-secondary-blue p-2 text-white w-20'>signUp</button>
+                    <input type="text" id='userName' value={info.userName} name='userName' onChange={changeHandle} className='border p-1 w-64' required placeholder='create a userName'/>
+                    <div className='input-container'>
+                        <input type={isPass?'password':'text'} id='password' value={info.password} name='password' onChange={changeHandle} className='border p-1 w-64' required placeholder='create a passWord'/>
+                        <div className='eye-icon' onClick={() => { setIsPass(!isPass) }}>
+                            {isPass ? <FaRegEye /> : <FaRegEyeSlash />}
+                        </div>
+                    </div>
+                    {errorMessage && <p className='text-center' style={{color:'red'}}>{errorMessage}</p>}
+                    <button className='bg-stone p-2 text-white w-20'>signUp</button>
                 </form>
-                </div>
-                <div>or</div>
-                <div className='flex gap-2'>
-                     <p>already have an account? </p>
-                     <p onClick={()=>navigate("/")} className='cursor-pointer text-secondary-blue'>logIn</p>
-                </div>
-            </div>))
+            </div>
+            <div>or</div>
+            <div className='flex gap-2'>
+                <p>already have an account? </p>
+                <p onClick={()=>navigate("/")} className='cursor-pointer text-secondary-blue font-bold'>logIn</p>
+            </div>
+        </div>)
+    )
 }
