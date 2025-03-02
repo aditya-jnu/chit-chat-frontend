@@ -27,7 +27,7 @@ export default function GetData() {
     useEffect(() => {
         console.log("Executing")
         getInfo();
-    },[refreshPage]);
+    },[refreshPage, getInfo]);
 
     return (
         <div className='flex flex-col m-2 min-h-screen max-w-screen'>
