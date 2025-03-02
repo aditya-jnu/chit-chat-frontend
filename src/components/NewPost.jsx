@@ -5,8 +5,7 @@ import { toast } from 'react-toastify';
 
 export default function NewPost() {
     const { loggedUser,setRefreshPage,refreshPage} = useContext(AppContext);
-    const Base_URL = "https://fileupserver.onrender.com";
-    // const Base_URL = "http://localhost:4000";
+    const Base_URL=process.env.REACT_APP_API_BASE_URL;
     const [newPost, setNewPost] = useState({ userId: loggedUser._id, caption: '' });
     const fileInputRef = useRef(null); // Create a ref for the file input
     const [error, setError] = useState(null);

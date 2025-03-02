@@ -11,10 +11,8 @@ import { jwtDecode } from 'jwt-decode';
 export default function App() {
   const navigate=useNavigate();
   let{isLoggedIn,setIsLoggedIn,setLoggedUser}=useContext(AppContext);
-  console.log("Local Storage ",localStorage.getItem('authToken'))
   const token = localStorage.getItem('authToken');
-  const Base_URL = "https://fileupserver.onrender.com";
-  // const Base_URL = "http://localhost:4000";
+  const Base_URL=process.env.REACT_APP_API_BASE_URL;
 
 
   useEffect(() => {

@@ -8,20 +8,17 @@ import { AppContext } from '../context/AppContext';
 export default function GetData() {
     
     const{refreshPage}=useContext(AppContext)
-    console.log('GD',refreshPage)
-    const Base_URL="https://fileupserver.onrender.com";
-    // const Base_URL="http://localhost:4000";
-    const [page, setPage] = useState([]);
+    const Base_URL=process.env.REACT_APP_API_BASE_URL;
+    const[page, setPage] = useState([]);
     const[error,setError]=useState(null)
 
     const getInfo = async () => {
         try {
             console.log("Fetching....")
             const response = await axios.get(`${Base_URL}/api/v1/posts`);
-            console.log('BEFORE SORTING',response.data.posts)
             const sortedPosts = response.data.posts.slice().reverse();   
-            console.log("AFTER SORT", sortedPosts);
-             setPage(sortedPosts);
+            setPage(sortedPosts);
+            console.log("Fetched....")
         } catch (err) {
             setError('error in fetching data.')
         }
