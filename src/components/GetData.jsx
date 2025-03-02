@@ -1,4 +1,4 @@
-import React,{useState,useEffect,useContext} from 'react';
+import React,{useCallback,useState,useEffect,useContext} from 'react';
 import axios from 'axios';
 import SideBar from './SideBar';
 import NewPost from './NewPost';
@@ -12,7 +12,7 @@ export default function GetData() {
     const[page, setPage] = useState([]);
     const[error,setError]=useState(null)
 
-    const getInfo = async () => {
+    const getInfo = useCallback(async () => {
         try {
             console.log("Fetching....")
             const response = await axios.get(`${Base_URL}/api/v1/posts`);
@@ -22,7 +22,7 @@ export default function GetData() {
         } catch (err) {
             setError('error in fetching data.')
         }
-    };
+    },[Base_URL]);
 
     useEffect(() => {
         console.log("Executing")
