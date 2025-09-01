@@ -27,6 +27,7 @@ export default function SignUp() {
         setSubmit(true)
         event.preventDefault();
         try{
+            console.log("BASE_URL ",Base_URL);
             const response=await axios.post(`${Base_URL}/api/v1/signup`,info)
             console.log("user created",response)
             toast.success('user created successfully!!')
